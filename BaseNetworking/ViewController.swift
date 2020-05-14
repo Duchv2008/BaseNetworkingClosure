@@ -9,12 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    let autheReposity = AuthenticateRequest()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let param = LoginRequest(username: "duchv", password: "12345678")
+        autheReposity.login(req: param, success: { [weak self] response in
+            guard let self = self else { return }
+            print(response)
+        }) { [weak self] error in
+            guard let self = self else { return }
+            print(error)
+        }
     }
-
-
 }
-
